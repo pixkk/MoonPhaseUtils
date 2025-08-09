@@ -4,6 +4,10 @@
 # MoonPhaseUtils
 A BepInEx plugin that enhances the moon system by providing visual information about the current moon phase and its attributes directly in the game's HUD. Changes the boring system of constant moon phase.
 
+## Screenshots
+![202508~3](https://github.com/user-attachments/assets/dfa0dba6-e2e5-4ab9-99bb-d1116eda28e3)
+![202508~1](https://github.com/user-attachments/assets/3ad2bbc3-86d5-49a2-9bd8-770f73a63740)
+
 ## Compatibility
 Tested on all versions of R.E.P.O. Currenty 100% working on **0.2.1**.
 
