@@ -26,3 +26,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MoonPhaseUtils
+        path: |
+          **/bin/Release/**/*.dll
