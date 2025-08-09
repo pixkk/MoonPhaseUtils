@@ -71,14 +71,14 @@ public class MenuPageSavesPatchClass
             ">k</color>"
         });
         int num2 = RunManager.instance.CalculateMoonLevel(num - 1);
-        Logger.LogInfo("MoonLevel - " + num2 + " (num-1=" + num + ")");
+        // Logger.LogInfo("MoonLevel - " + num2 + " (num-1=" + num + ")");
         num2 = Mathf.Clamp(num2, 0, RunManager.instance.moons.Count);
         if (num2 > 0)
         {
             __instance.saveFileInfoMoonRect.gameObject.SetActive(true);
             __instance.saveFileInfoMoonImage.texture = RunManager.instance.MoonGetIcon(num2);
 
-            Logger.LogInfo("MoonGetIcon - " + num2 + " (texture=" + __instance.saveFileInfoMoonImage.texture + ")");
+            // Logger.LogInfo("MoonGetIcon - " + num2 + " (texture=" + __instance.saveFileInfoMoonImage.texture + ")");
         }
         else
         {
@@ -95,7 +95,7 @@ public class MenuPageSavesPatchClass
         var field = AccessTools.Field(typeof(MenuPageSaves), fieldName);
         return field != null ? field.GetValue(instance) : null;
     }
-    
+
     private static object ExecuteMethod(string methodName, object instance = null, object[] parameters = null)
     {
         var method = AccessTools.Method(typeof(MenuPageSaves), methodName);

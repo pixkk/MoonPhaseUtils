@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using HarmonyLib;
-using MenuLib;
-using MoonPhaseUtils.UI;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MoonPhaseUtils.patches;
 
@@ -18,7 +13,7 @@ public class MoonPhaseClass
     [HarmonyPostfix]
     public static void GenerateDonePatched(LevelGenerator __instance, PhotonMessageInfo _info)
     {
-        Logger.LogInfo($"Instance state - {__instance.State}");
+        // Logger.LogInfo($"Instance state - {__instance.State}");
         if (RunManager.instance != null)
         {
             bool isReady = RunManager.instance.levelCurrent != RunManager.instance.levelLobby
@@ -33,16 +28,15 @@ public class MoonPhaseClass
                 if (moonLevelField != null)
                 {
                     var __moonLevel = (int)moonLevelField.GetValue(RunManager.instance);
-                    List<Moon> moons = (List<Moon>)AccessTools.Field(typeof(RunManager), "moons")
-                        .GetValue(RunManager.instance);
-                    Logger.LogInfo("Available Moons: ");
-                    foreach (Moon moon in moons)
-                    {
-                        Logger.LogInfo("- " + moon.moonName + " (" + string.Join("||", moon.moonAttributes) + ")" +
-                                       "(" + moon.moonIcon.ToString() + ")");
-                    }
-                    //    TopUIBanner banner  here
-                    // TopUIBanner.Show("TEST", RunManager.instance.MoonGetIcon(__moonLevel));
+                    // List<Moon> moons = (List<Moon>)AccessTools.Field(typeof(RunManager), "moons")
+                        // .GetValue(RunManager.instance);
+                    // Logger.LogInfo("Available Moons: ");
+                    // foreach (Moon moon in moons)
+                    // {
+                    //     Logger.LogInfo("- " + moon.moonName + " (" + string.Join("||", moon.moonAttributes) + ")" +
+                    //                    "(" + moon.moonIcon.ToString() + ")");
+                    // }
+
 
                     if (Plugin.Instance != null)
                     {
@@ -53,8 +47,7 @@ public class MoonPhaseClass
                         // }
                         Plugin.Instance.SetupLabel();
                         Plugin.Instance.SetupImage();
-                        // string text = $"Dead players: test/{GameDirector.instance.PlayerList.Count}\n" 
-                        //               + string.Join("\n", "test2");
+
 
                         string text = string.Concat(new string[]
                         {
@@ -67,18 +60,18 @@ public class MoonPhaseClass
                             "</color>"
                         });
                         Plugin.Instance.screenLabelText.SetText(text);
-                        // Plugin.Instance.screenLabelText.color = Color.white;
+
                         Plugin.Instance.screenLabelText.fontSizeMax = 10f;
                         Plugin.Instance.screenLabelText.fontSize = 12f;
                         Plugin.Instance.screenLabel.SetActive(__moonLevel != 0);
+                        Plugin.Instance.UpdateImagePosition();
                         Plugin.Instance.screenImageTexture.texture = RunManager.instance.MoonGetIcon(__moonLevel);
                         Plugin.Instance.screenImage.SetActive(true);
                     }
                 }
                 else
                 {
-                    // тут можешь делать что угодно с этим значением
-                    Logger.LogInfo($"MoonLevelField is null. Current level - {__instance.Level}");
+                    // Logger.LogInfo($"MoonLevelField is null. Current level - {__instance.Level}");
                 }
             }
         }

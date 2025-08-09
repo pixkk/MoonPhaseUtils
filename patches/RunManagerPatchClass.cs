@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using HarmonyLib;
-using Photon.Pun;
 
 namespace MoonPhaseUtils.patches;
 
@@ -52,18 +50,4 @@ public class RunManagerPatchClass
             field.SetValue(instance, value);
         }
     }
-
-    // private static object GetField(string fieldName)
-    // {
-    //     var field = AccessTools.Field(typeof(RunManager), fieldName);
-    //     return field != null ? field.GetValue(RunManager.instance) : null;
-    // }
-    // private static void SetField(string fieldName, object value)
-    // {
-    //     var field = AccessTools.Field(typeof(RunManager), fieldName);
-    //     if (field != null)
-    //     {
-    //         field.SetValue(RunManager.instance, value);
-    //     }
-    // }
 }
