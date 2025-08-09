@@ -44,5 +44,8 @@
         <Reference Include="Libraries/Unity.TextMeshPro.dll">
             <Private>false</Private>
         </Reference>
+        <Reference Include="Libraries/MenuLib.dll">
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 </Project>
