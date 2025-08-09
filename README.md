@@ -2,7 +2,7 @@
 <img width="2480" height="799" alt="logoofmod" src="https://github.com/user-attachments/assets/e2bf33b8-2993-4631-ab6e-575d62168ac8" />
 
 # MoonPhaseUtils
-A BepInEx plugin that enhances the moon system by providing visual information about the current moon phase and its attributes directly in the game's HUD. Changes the boring system of constant moon phase.  
+A BepInEx mod that enhances the moon system by providing visual information about the current moon phase and its attributes directly in the game's HUD. Changes the boring system of constant moon phase.  
 It works as server-side and client-side mod.
 
 Mod page on the Github: https://github.com/pixkk/MoonPhaseUtils
@@ -43,12 +43,12 @@ Tested on all versions of R.E.P.O. Currenty 100% working on **0.2.1**.
 
 1. Make sure you have [BepInEx](https://github.com/BepInEx/BepInEx) installed
 2. Download the latest release from the releases page
-3. Extract the plugin files to your `BepInEx/plugins` folder
+3. Extract the mod files to your `BepInEx/plugins` folder
 4. Launch the game
 
 ## Configuration
 
-The plugin works out of the box with no configuration required. The moon display will automatically appear when you're in a gameplay level (not in lobby, menu, tutorial, shop etc.).
+The mod works out of the box with no configuration required. The moon display will automatically appear when you're in a gameplay level (not in lobby, menu, tutorial, shop etc.).
 
 ## Technical Details
 ### Patched Methods
