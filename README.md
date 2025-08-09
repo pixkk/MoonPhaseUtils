@@ -5,6 +5,10 @@
 A BepInEx plugin that enhances the moon system by providing visual information about the current moon phase and its attributes directly in the game's HUD. Changes the boring system of constant moon phase.  
 It works as server-side and client-side mod.
 
+Mod page on the Github: https://github.com/pixkk/MoonPhaseUtils
+
+Mod can work in two modes:
+
 - **Server-side**: server owner can see HUD with current moon information, but currently it have a **BUG** when another players don't see this information. In server-side case, only OWNER must have this mod. Another players can play without it.
 - **Client-side**: in SINGLEPLAYER you can see HUD.
 
