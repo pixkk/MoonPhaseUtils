@@ -1,4 +1,3 @@
-
 <img width="2480" height="799" alt="logoofmod" src="https://github.com/user-attachments/assets/e2bf33b8-2993-4631-ab6e-575d62168ac8" />
 
 # MoonPhaseUtils
