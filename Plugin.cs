@@ -125,7 +125,7 @@ public class Plugin : BaseUnityPlugin
 
                 screenImageTexture = screenImage.AddComponent<RawImage>();
 
-                screenImageTexture.color = Color.white;
+                screenImageTexture.color = new Color(1f, 1f, 1f, 0f);
 
 
                 screenImage.transform.SetParent(hud.transform, false);
