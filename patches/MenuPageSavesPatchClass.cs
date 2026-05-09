@@ -104,8 +104,7 @@ public class MenuPageSavesPatchClass
     private static object ExecuteMethod(string methodName, object instance = null, object[] parameters = null)
     {
         var method = AccessTools.Method(typeof(MenuPageSaves), methodName);
-        if (method == null) return null;
-        return method.Invoke(instance, parameters);
+        return method == null ? null : method.Invoke(instance, parameters);
     }
 
     private static void SetField(string fieldName, object value, object instance = null)

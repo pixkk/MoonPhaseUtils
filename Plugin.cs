@@ -57,47 +57,46 @@ public class Plugin : BaseUnityPlugin
     {
         lock (_updateLock)
         {
-            if (screenLabel == null)
+            if (screenLabel != null) return;
+            
+            Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Creating label...");
+
+            GameObject hud = GameObject.Find("Game Hud");
+            GameObject haul = GameObject.Find("Tax Haul");
+
+            if (hud == null || haul == null)
             {
-                Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Creating label...");
-
-                GameObject hud = GameObject.Find("Game Hud");
-                GameObject haul = GameObject.Find("Tax Haul");
-
-                if (hud == null || haul == null)
-                {
-                    Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Error getting HUD or Haul - not setting up label :(");
-                    return;
-                }
-
-                TMP_FontAsset font = haul.GetComponent<TMP_Text>().font;
-                screenLabel = new GameObject();
-                screenLabel.SetActive(false);
-                screenLabel.name = "ListDeadPlayers";
-                screenLabel.AddComponent<TextMeshProUGUI>();
-
-                screenLabelText = screenLabel.GetComponent<TextMeshProUGUI>();
-                screenLabelText.font = font;
-
-                screenLabelText.fontSize = 24f;
-                screenLabelText.enableWordWrapping = true;
-                screenLabelText.overflowMode = TextOverflowModes.Overflow;
-                screenLabelText.alignment = TextAlignmentOptions.BottomRight;
-                screenLabelText.horizontalAlignment = HorizontalAlignmentOptions.Right;
-                screenLabelText.verticalAlignment = VerticalAlignmentOptions.Bottom;
-                screenLabelText.SetText("");
-                screenLabel.transform.SetParent(hud.transform, false);
-
-                RectTransform component = screenLabel.GetComponent<RectTransform>();
-
-                // right-bottom corner
-                component.anchorMax = new Vector2(1f, 0f);
-                component.anchorMin = new Vector2(1f, 0f);
-                component.pivot = new Vector2(1f, 0f);
-                // margins
-                component.anchoredPosition = new Vector2(-30f, 30f);
-                component.sizeDelta = new Vector2(300f, 400f);
+                Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Error getting HUD or Haul - not setting up label :(");
+                return;
             }
+
+            TMP_FontAsset font = haul.GetComponent<TMP_Text>().font;
+            screenLabel = new GameObject();
+            screenLabel.SetActive(false);
+            screenLabel.name = "ListDeadPlayers";
+            screenLabel.AddComponent<TextMeshProUGUI>();
+
+            screenLabelText = screenLabel.GetComponent<TextMeshProUGUI>();
+            screenLabelText!.font = font;
+
+            screenLabelText.fontSize = 24f;
+            screenLabelText.enableWordWrapping = true;
+            screenLabelText.overflowMode = TextOverflowModes.Overflow;
+            screenLabelText.alignment = TextAlignmentOptions.BottomRight;
+            screenLabelText.horizontalAlignment = HorizontalAlignmentOptions.Right;
+            screenLabelText.verticalAlignment = VerticalAlignmentOptions.Bottom;
+            screenLabelText.SetText("");
+            screenLabel.transform.SetParent(hud.transform, false);
+
+            RectTransform component = screenLabel.GetComponent<RectTransform>();
+
+            // right-bottom corner
+            component.anchorMax = new Vector2(1f, 0f);
+            component.anchorMin = new Vector2(1f, 0f);
+            component.pivot = new Vector2(1f, 0f);
+            // margins
+            component.anchoredPosition = new Vector2(-30f, 30f);
+            component.sizeDelta = new Vector2(300f, 400f);
         }
     }
 
@@ -105,44 +104,34 @@ public class Plugin : BaseUnityPlugin
     {
         lock (_updateLock)
         {
-            if (screenImage == null)
+            if (screenImage != null) return;
+            
+            Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Creating image...");
+
+            GameObject hud = GameObject.Find("Game Hud");
+            GameObject haul = GameObject.Find("Tax Haul");
+
+            if (hud == null || haul == null)
             {
-                Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Creating image...");
-
-                GameObject hud = GameObject.Find("Game Hud");
-                GameObject haul = GameObject.Find("Tax Haul");
-
-                if (hud == null || haul == null)
-                {
-                    Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Error getting HUD or Haul - not setting up image :(");
-                    return;
-                }
-
-
-                screenImage = new GameObject("MoonImage");
-                screenImage.SetActive(false);
-
-
-                screenImageTexture = screenImage.AddComponent<RawImage>();
-
-                screenImageTexture.color = new Color(1f, 1f, 1f, 0f);
-
-
-                screenImage.transform.SetParent(hud.transform, false);
-
-
-                RectTransform rectTransform = screenImage.GetComponent<RectTransform>();
-
-                // right bottom corner
-                rectTransform.anchorMin = new Vector2(1f, 0f);
-                rectTransform.anchorMax = new Vector2(1f, 0f);
-                rectTransform.pivot = new Vector2(1f, 0f);
-
-                rectTransform.anchoredPosition = new Vector2(-30f, 60f);
-
-
-                rectTransform.sizeDelta = new Vector2(30f, 30f);
+                Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Error getting HUD or Haul - not setting up image :(");
+                return;
             }
+
+            screenImage = new GameObject("MoonImage");
+            screenImage.SetActive(false);
+            screenImage.transform.SetParent(hud.transform, false);
+
+            screenImageTexture = screenImage.AddComponent<RawImage>();
+            screenImageTexture!.color = new Color(1f, 1f, 1f, 0f);
+            
+            
+            RectTransform rectTransform = screenImage.GetComponent<RectTransform>();
+            // right bottom corner
+            rectTransform.anchorMin = new Vector2(1f, 0f);
+            rectTransform.anchorMax = new Vector2(1f, 0f);
+            rectTransform.pivot = new Vector2(1f, 0f);
+            rectTransform.anchoredPosition = new Vector2(-30f, 60f);
+            rectTransform.sizeDelta = new Vector2(30f, 30f);
         }
     }
 
@@ -151,19 +140,14 @@ public class Plugin : BaseUnityPlugin
     {
         if (screenLabel == null || screenImage == null || screenLabelText == null)
             return;
-
-
+        
         screenLabelText.ForceMeshUpdate();
-
-
+        
         Vector2 textSize = screenLabelText.GetRenderedValues(false);
         float textHeight = textSize.y;
-
-
-        RectTransform imageRect = screenImage.GetComponent<RectTransform>();
-
-
         float imageY = 30f + textHeight + 10f;
+        
+        RectTransform imageRect = screenImage.GetComponent<RectTransform>();
         imageRect.anchoredPosition = new Vector2(-30f, imageY);
     }
 }

@@ -1,4 +1,6 @@
-﻿using BepInEx.Logging;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BepInEx.Logging;
 using HarmonyLib;
 using Photon.Pun;
 using UnityEngine;
@@ -20,7 +22,7 @@ public class MoonPhaseClass
                            && RunManager.instance.levelCurrent != RunManager.instance.levelMainMenu
                            && RunManager.instance.levelCurrent != RunManager.instance.levelLobbyMenu
                            && RunManager.instance.levelCurrent != RunManager.instance.levelRecording
-                           && RunManager.instance.levelCurrent != RunManager.instance.levelShop
+                           && !SemiFunc.IsLevelShop(RunManager.instance.levelCurrent)
                            && RunManager.instance.levelCurrent != RunManager.instance.levelTutorial;
             if (__instance.State == LevelGenerator.LevelState.Done && isReady)
             {
@@ -28,44 +30,40 @@ public class MoonPhaseClass
                 if (moonLevelField != null)
                 {
                     var __moonLevel = (int)moonLevelField.GetValue(RunManager.instance);
-                    // List<Moon> moons = (List<Moon>)AccessTools.Field(typeof(RunManager), "moons")
-                        // .GetValue(RunManager.instance);
-                    // Logger.LogInfo("Available Moons: ");
-                    // foreach (Moon moon in moons)
-                    // {
-                    //     Logger.LogInfo("- " + moon.moonName + " (" + string.Join("||", moon.moonAttributes) + ")" +
-                    //                    "(" + moon.moonIcon.ToString() + ")");
-                    // }
-
-
                     if (Plugin.Instance != null)
                     {
-                        // GameObject[] activeGameObjects = Object.FindObjectsOfType<GameObject>();
-                        // foreach (GameObject go in activeGameObjects)
-                        // {
-                        //     Logger.LogInfo($"Found game object {go.name}");
-                        // }
                         Plugin.Instance.SetupLabel();
                         Plugin.Instance.SetupImage();
+                        List<Moon.MoonAttribute> moonAttributes = RunManager.instance.MoonGetAttributes(__moonLevel);
+                        // List<string> descrString = [];
+                        // foreach (Moon.MoonAttribute attr in moonAttributes)
+                        // {
+                        //     descrString.Add(attr.text);
+                        //     // Logger.LogInfo($"Found Moon Attr {attr.text.ToString()}");
+                        // }
 
-
-                        string text = string.Concat(new string[]
-                        {
+                        var text = string.Concat(
                             "<color=#",
                             ColorUtility.ToHtmlStringRGB(Color.white),
                             "><b>",
                             RunManager.instance.MoonGetName(__moonLevel).Trim(),
                             "</b>" + "\n" +
-                            string.Join("\n", RunManager.instance.MoonGetAttributes(__moonLevel)),
+                            string.Join("\n", moonAttributes.Select(a => a.text)),
                             "</color>"
-                        });
-                        Plugin.Instance.screenLabelText.SetText(text);
+                        );
 
+                        
+                        bool showMoon = __moonLevel != 0;
+                        Plugin.Instance.screenLabelText.SetText(text);
                         Plugin.Instance.screenLabelText.fontSizeMax = 10f;
                         Plugin.Instance.screenLabelText.fontSize = 12f;
-                        Plugin.Instance.screenLabel.SetActive(__moonLevel != 0);
+                        Plugin.Instance.screenLabel.SetActive(showMoon);
                         Plugin.Instance.UpdateImagePosition();
                         Plugin.Instance.screenImageTexture.texture = RunManager.instance.MoonGetIcon(__moonLevel);
+                        
+                        Plugin.Instance.screenImageTexture.color = showMoon 
+                            ? new Color(1f, 1f, 1f, 1f) 
+                            : new Color(1f, 1f, 1f, 0f);
                         Plugin.Instance.screenImage.SetActive(true);
                     }
                 }

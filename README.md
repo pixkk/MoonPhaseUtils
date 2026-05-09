@@ -16,7 +16,11 @@ Mod can work in two modes:
 ![202508~1](https://github.com/user-attachments/assets/3ad2bbc3-86d5-49a2-9bd8-770f73a63740)
 
 ## Compatibility
-Tested on all versions of R.E.P.O. Currenty 100% working on **0.3.0**, **0.2.1**.
+| R.E.P.O version | Mod version |
+|-----------------|-------------|
+| 0.4.0           | 2.1.0       |
+| 0.3.0           | 2.0.0       |
+| 0.2.1           | 1.0.0       |
 
 ## Features
 
@@ -75,6 +79,8 @@ dotnet build MoonPhaseUtils.csproj
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Changelog
+### Version 2.1.0
+- Update for the version 0.4.0
 
 ### Version 2.0.0
 - Update for the version 0.3.0
