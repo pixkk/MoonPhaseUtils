@@ -81,6 +81,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Changelog
 ### Version 2.1.0
 - Update for the version 0.4.0
+- Fixed Moon icon displaying
+
+======================================
 
 ### Version 2.0.0
 - Update for the version 0.3.0
