@@ -18,6 +18,7 @@ Mod can work in two modes:
 ## Compatibility
 | R.E.P.O version | Mod version |
 |-----------------|-------------|
+| 0.5.0           | 2.2.0       |
 | 0.4.0           | 2.1.0       |
 | 0.3.0           | 2.0.0       |
 | 0.2.1           | 1.0.0       |
@@ -37,10 +38,13 @@ Mod can work in two modes:
   <img width="303" height="624" alt="image" src="https://github.com/user-attachments/assets/d2e91c24-8631-4d43-8a01-7cc97a370cec" />
 
 
-### 💾 **Enhanced Save File Display**
-> [!WARNING]
-> Be careful with mods that modify the save menu - there may be incompatibility with them.
-- **Moon Information in Saves**: Shows moon icons and information in the save file selection screen
+[//]: # (### 💾 **Enhanced Save File Display**)
+
+[//]: # (> [!WARNING])
+
+[//]: # (> Be careful with mods that modify the save menu - there may be incompatibility with them.)
+
+[//]: # (- **Moon Information in Saves**: Shows moon icons and information in the save file selection screen)
 
 ## Installation
 
@@ -57,7 +61,8 @@ The mod works out of the box with no configuration required. The moon display wi
 ### Patched Methods
 - `LevelGenerator.GenerateDone` - Triggers moon display setup
 - `RunManager.CalculateMoonLevel` - Overrides moon level calculation
-- `MenuPageSaves.SaveFileSelected` - Updates save file display
+
+[//]: # (- `MenuPageSaves.SaveFileSelected` - Updates save file display)
 
 ## Development
 
@@ -79,11 +84,15 @@ dotnet build MoonPhaseUtils.csproj
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Changelog
+
+### Version 2.2.0
+- Update for the version 0.5.0
+
+======================================
+
 ### Version 2.1.0
 - Update for the version 0.4.0
 - Fixed Moon icon displaying
-
-======================================
 
 ### Version 2.0.0
 - Update for the version 0.3.0

@@ -49,6 +49,7 @@ public class MenuPageSavesPatchClass
 
                 __instance.saveFileHeader.text = __instance.localizedCorruptedHeader?.GetLocalizedString() ?? "Corrupted Save File";
                 __instance.saveFileHeader.color = new Color(1f, 0.0f, 0f);
+                __instance.saveFileRenameButton.GetComponent<MenuButton>().ResizeToText();
                 __instance.saveFileHeaderDate.text = ":(";
                 __instance.saveFileInfoRow1.text = __instance.localizedCorruptedInfoRow1?.GetLocalizedString() ?? "Sorry!";
                 __instance.saveFileInfoRow2.text = "";
@@ -79,7 +80,7 @@ public class MenuPageSavesPatchClass
             };
             selectableElement2.navigation = navigation;
         }
-        MenuSelectableElement component2 = ((List<MenuElementSaveFile>)GetField("saveFiles", __instance)).FirstOrDefault<MenuElementSaveFile>((Func<MenuElementSaveFile, bool>) (s => ((string)GetField("saveFileName", s)) == saveFolderName))?.GetComponent<MenuSelectableElement>();
+        MenuSelectableElement component2 = ((List<MenuElementSaveFile>)GetField("saveFiles", __instance)).FirstOrDefault<MenuElementSaveFile>((Func<MenuElementSaveFile, bool>) (s => ((string)GetField("saveFileName", s, typeof(MenuElementSaveFile))) == saveFolderName))?.GetComponent<MenuSelectableElement>();
         ExecuteMethod("SetRightNavigation", __instance, new object[] { selectableElement2, selectableElement1, component2 });
         if (StatsManager.instance.SaveFileGetRenamed(saveFolderName, str1))
             __instance.saveFileHeader.text = StatsManager.instance.SaveFileGetTeamName(saveFolderName, str1);
@@ -95,7 +96,7 @@ public class MenuPageSavesPatchClass
         __instance.saveFileInfoRow1.text += "      "; 
         float timePlayed = StatsManager.instance.SaveFileGetTimePlayed(saveFolderName, str1);
         TextMeshProUGUI saveFileInfoRow1_1 = __instance.saveFileInfoRow1;
-        saveFileInfoRow1_1.text += 
+        saveFileInfoRow1_1.text = 
             $"{saveFileInfoRow1_1.text}<sprite name=clock>  {SemiFunc.TimeToString(timePlayed, __instance.localizedDurationShort, true, new Color(0.1f, 0.4f, 0.8f), new Color(0.05f, 0.3f, 0.6f))}";
         __instance.saveFileInfoRow1.text += "      ";
         TextMeshProUGUI saveFileInfoRow1_2 = __instance.saveFileInfoRow1;
